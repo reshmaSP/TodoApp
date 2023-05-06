@@ -3,7 +3,7 @@
 // for button value attribute is the text on button
 import React, { useState } from 'react'
 
-export const Addtodo = () => {
+export const Addtodo = (props) => {
     const[title,settitle] = useState("");
     const[desc,setdesc]=useState("");
     
@@ -12,7 +12,9 @@ export const Addtodo = () => {
         e.preventDefault();
 
         if(!title && !desc){alert("submitted field cannote be empty");}
-        console.log("form is submitting");
+        else{
+            props.addtodo(title,desc);
+        }
     }
     
     return (
@@ -26,7 +28,7 @@ export const Addtodo = () => {
                 </div>
                 <div className="mb-3">
                     <label for="desc" class="form-label">Deadline</label>
-                    <input type="email" value={desc} class="form-control"onChange={(e)=>{setdesc(e.target.value)}} id="desc" placeholder="desc" />
+                    <input type="text" value={desc} class="form-control"onChange={(e)=>{setdesc(e.target.value)}} id="desc" placeholder="desc" />
                 </div>
                 <button type="submit" className='btn btn-success'>Add Task</button>
             </div>
