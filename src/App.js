@@ -4,46 +4,52 @@ import Header from './components/Header'
 import Todos from './components/Todos';
 import Footer from "./components/Footer";
 import { Addtodo } from './components/Addtodo';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { About } from './components/About';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+
+
+} from "react-router-dom";
 
 function App() {
-  // const[todolist,settodolist]=useState([
-    const[todo,settodo]=useState([
-    {
-      id:1,
-      task:"learn react",
-      time:"in 1 hrs",
-  },
-  {
-      id:2,
-      task:"get adbms book",
-      time:"after 1"
-  },
-  {
-      id:3,
-      task:"leetcode",
-      time:"3 hrs with strivers graph"
+  let initTodo;
+  if (localStorage.getItem("todo") === null) {
+    initTodo = [];
+  }
+  else {
+    initTodo = JSON.parse(localStorage.getItem("todo"));
   }
 
-  ]);
-  const addtodo=(title,desc)=>{
+  // const[todolist,settodolist]=useState([
+  const [todo, settodo] = useState(initTodo);
+  useEffect(() => {
+    localStorage.setItem("todo", JSON.stringify(todo));
+
+  }, [todo]);
+  const addtodo = (title, desc) => {
     console.log("adding task");
-    const newtodo={
-      id:todo.length,
-      task:title,
-      time:desc
+    const newtodo = {
+      id: todo.length,
+      task: title,
+      time: desc
     }
-    settodo([...todo,newtodo]);
+    settodo([...todo, newtodo]);
     console.log("added task");
 
+    localStorage.setItem("todo", JSON.stringify(todo));
+
+
   }
-  const onDelete=(deletetodo)=>{
-    console.log("i am deleting",deletetodo.task);
-    settodo(todo.filter((e)=>
-    {
-      return e!==deletetodo;
+  const onDelete = (deletetodo) => {
+    console.log("i am deleting", deletetodo.task);
+    settodo(todo.filter((e) => {
+      return e !== deletetodo;
     }))
-    console.log(todo.length)
+    // console.log(todo.length);
 
   }
   //  const deletetask=(todo)=>{
@@ -52,18 +58,36 @@ function App() {
   //   {
   //     return e!==todo;
   //   }))
-  
+
   // };
 
   return (
-  <>
- <Header title="Reshma Todo" searchbar={true}/>
- <Addtodo addtodo={addtodo}/>
- <Todos todo={todo} onDelete={onDelete}/>
- <Footer/>
- 
+    <>
+      <Router>
+        <Header title="Reshma Todo" searchbar={true} />
+        <Switch>
+          <Route exact path="/" render={() => {
+            return (
+              <>
+                <Addtodo addtodo={addtodo} />
+                <Todos todo={todo} onDelete={onDelete} />
+                </>
+            )
+          }}>
+           
+          </Route>
+          <Route exact path="/about">
+          <About />
+          </Route>
+          
+        </Switch>
 
-  </>
+
+        <Footer />
+      </Router>
+
+
+    </>
   );
 }
 

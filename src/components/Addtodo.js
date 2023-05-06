@@ -23,12 +23,12 @@ export const Addtodo = (props) => {
             <div className='container'>
                 <h4 className='mt-3 mb-3'>Add a Todo</h4>
                 <div className="mb-3">
-                    <label for="title" class="form-label">Task details</label>
-                    <input type="text" value={title} class="form-control" onChange={(e)=>{settitle(e.target.value)}} id="title" placeholder="title" />
+                    <label htmlFor="title" className="form-label">Task details</label>
+                    <input type="text" value={title} className="form-control" onChange={(e)=>{settitle(e.target.value)}} id="title" placeholder="title" />
                 </div>
                 <div className="mb-3">
-                    <label for="desc" class="form-label">Deadline</label>
-                    <input type="text" value={desc} class="form-control"onChange={(e)=>{setdesc(e.target.value)}} id="desc" placeholder="desc" />
+                    <label htmlFor="desc" className="form-label">Deadline</label>
+                    <input type="text" value={desc} className="form-control"onChange={(e)=>{setdesc(e.target.value)}} id="desc" placeholder="desc" />
                 </div>
                 <button type="submit" className='btn btn-success'>Add Task</button>
             </div>
