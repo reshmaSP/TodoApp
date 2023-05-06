@@ -20,7 +20,13 @@ const Todos = (props) => {
   return (
     <>
     <h4 style={{textAlign :"center"}}>Todos</h4>
-    <Todo todo={props.todo}/>
+    {props.todo.map((todos)=>{
+      return <Todo todos={todos} key={todos.sno} OnDelete={props.onDelete}/>
+  
+     
+
+    })}
+    
     
     </>
   )
