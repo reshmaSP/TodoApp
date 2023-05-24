@@ -19,9 +19,9 @@ const Header = (props) => {
                             <li className="nav-item">
                                 <Link className="nav-link active" aria-current="page" to="/about">About</Link>
                             </li>
-                            <li className="nav-item">
+                            {/* <li className="nav-item">
                                 <Link className="nav-link" to="/">Link</Link>
-                            </li>
+                            </li> */}
                             {/* <li className="nav-item dropdown">
           <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Dropdown
@@ -33,10 +33,10 @@ const Header = (props) => {
             <li><Link className="dropdown-item" to="#">Something else here</Link></li>
           </ul>
         </li> */}
-                            <li className="nav-item">
+                            {/* <li className="nav-item">
 
                                 <Link className="nav-link disabled">Disabled</Link>
-                            </li>
+                            </li> */}
                         </ul>
                         {props.searchbar?
                         <form className="d-flex" role="search">
